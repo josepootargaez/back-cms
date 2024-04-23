@@ -14,8 +14,8 @@ const createCategory = async (req, res) => {
         const response = await createCat(req.body);
         res.status(200).json({ status: true })
     } catch (error) {
-        console.log(error);
-        res.status(500).json({
+        const status = error?.status ? error.status : 500;
+        res.status(status).json({
             message: error.message
         })
     }
